@@ -12,10 +12,6 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-
-
-
-            
             $login = $conn->query("SELECT * FROM users WHERE email='$email'");
             $login->execute();
 
@@ -24,7 +20,11 @@
             if($login->rowcount() > 0) {
 
                 if(password_verify($password, $fetch['mypassword'])) {
-                    echo "Logged In";
+                    $_SESSION['username'] = $fetch['username'];
+                    $_SESSION['user_id'] = $fetch['id'];
+
+                    header("location: ".APPURL."");
+
                 } else {
                     echo "<script>alert('password or email is wrong')</script>";
                 }
