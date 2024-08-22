@@ -3,6 +3,31 @@
 
 <?php
 
+ if (isset($_POST['submit'])) {
+
+    $pro_id = $_POST['pro_id'];
+    $pro_name = $_POST['pro_name'];
+    $pro_image = $_POST['pro_image'];
+    $pro_price = $_POST['pro_price'];
+    $pro_amount = $_POST['pro_amount'];
+    $pro_file = $_POST['pro_file'];
+    $user_id = $_POST['user_id'];
+
+    $insert = $conn_>prepare("INSERT INTO cart (pro_id, pro_name, pro_image, pro_price, pro_amount, user_id)
+VALUES(:pro_id, :pro_name, :pro_image, :pro_price, :pro_amount, :user_id)");
+
+     $insert->execute([
+        ':pro_id' => $pro_id,
+        ':pro_name' => $pro_name,
+        ':pro_image' => $pro_image,
+        ':pro_price' => $pro_pice,
+        ':pro_amount' => $pro_file,
+        ':user_id' => $user_id,
+     ]);
+
+
+}
+
    if(isset($_GET['id'])) {
 
     $id = $_GET['id'];
@@ -36,16 +61,52 @@
                                 </div>
                                 <div class="mt-4 mb-3"> 
                                     <h5 class="text-uppercase"><?php echo $product->name; ?></h5>
-                                    <div class="price d-flex flex-row align-items-center"> <span class="act-price">$20</span>
+                                    <div class="price d-flex flex-row align-items-center"> <span class="act-price">$<?php echo $product->price; ?></span>
                                     </div>
                                 </div>
                                 <p class="about"><?php echo $product->description; ?></p>
-                              
-                                <div class="cart mt-4 align-items-center"> <button class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> </div>
+                              <form method="post" id="form-data">
+                              <div class="">
+                                 <input type="text" name="pro_id" value="<?php echo $product->id; ?>" class="form-control" >
+                               </div> <div class="">
+                                 <input type="text" name="pro_name" value="<?php echo $product->name; ?>"class="form-control" >
+                               </div> <div class="">
+                                 <input type="text" name="pro_image" value="<?php echo $product->image; ?>" class="form-control" >
+                               </div> <div class="">
+                                 <input type="text" name="pro_price" value="<?php echo $product->price; ?>" class="form-control" >
+                               </div> <div class="">
+                                 <input type="text" name="pro_amount" value="1" class="form-control" >
+                               </div> <div class="">
+                                 <input type="text" name="pro_file" value="<?php echo $product->file; ?>" class="form-control" >
+                               </div> <div class="">
+                                 <input type="text" name="user-id" value="<?php echo $_SESSION['user_id']; ?>" class="form-control" >
+                               </div>
+                                <div class="cart mt-4 align-items-center">
+                                    <button name="submit" type="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> </div>
                             </div>
+                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 <?php require "../includes/footer.php"; ?>
+
+<script>
+    $(document).ready(function(){
+
+        $(document).on("submit", function(e) {
+            $form = $("#form_data").serialize()+'&submit=submit';
+        
+            $.ajax( {
+                type: "post",
+                url: "siglr.php?id=<?php echo $id; ?>",
+                data: formdata,
+                
+                success: function() {
+                    alert("added to cart successfully");
+                }
+            })
+        })
+});
+</script>
