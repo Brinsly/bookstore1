@@ -31,6 +31,7 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
                       <th scope="col">Price</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Total Price</th>
+                      <th scope="col">Update</th>
                       <th scope="col"><a href="#" class="btn btn-danger text-white">Clear</a></th>
                     </tr>
                   </thead>
@@ -46,7 +47,7 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
                         <td class="pro_price">$<?php echo $product->pro_price; ?></td>
                         <td><input id="form1" min="1" name="quantity" value="<?php echo $product->pro_amount; ?>"
                             type="number" class="form-control form-control-sm pro_amount" /></td>
-                        <td  class="total_price"><?php echo $product->pro_price; ?></td>
+                        <td class="total_price"><?php echo $product->pro_price; ?></td>
                         <td><button value="<?php echo $product->id; ?>" class="btn-update btn btn-warning text-white"><i
                               class="fas fa-pen"></i> </button></td>
 
@@ -69,7 +70,7 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
 
                 <div class="d-flex justify-content-between mb-5">
                   <h5 class="text-uppercase">Full price</h5>
-                  <h5 type ="text" class="full_price"></h5>
+                  <h5 type="text" class="full_price"></h5>
                 </div>
 
                 <button type="button" class="btn btn-dark btn-block btn-lg"
@@ -108,7 +109,7 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
       var total = pro_amount * pro_price;
       $el.find(".total_price").html("");
 
-      $el.find(".total_price").append( total);
+      $el.find(".total_price").append(total);
 
       $(".btn-update").on('click', function (e) {
 
@@ -144,10 +145,10 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
         $('.total_price').each(function () {
           sum += parseFloat($(this).text());
         });
-        
 
 
-        $(".full_price").html("$" + sum );
+
+        $(".full_price").html("$" + sum);
 
       }, 1000);
     }
