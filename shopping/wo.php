@@ -1,14 +1,32 @@
+
 <?php require "../includes/header.php" ?>
 <?php require "../config/config.php" ?>
 
 <?php
 $products = $conn->query("SELECT * FROM cart WHERE user_id='$_SESSION[user_id]'");
-$products->execute();
+$products ->execute();
 
 $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
 
-?>
 
+
+// if (isset($_GET['id'])) {
+//   $id = $_GET['id'];
+//   //checking for product in cart
+//   if (isset($_SESSION['user_id'])) {
+//     $select = $conn->query("SELECT * FROM cart WHERE pro_id ='$id' AND user_id='$_SESSION[user_id]'");
+//     $select->execute();
+//   }
+//   //getting data for every product
+//   $row = $conn->query("SELECT * FROM Cart WHERE status=1 AND id='$id'");
+//   $row->execute();
+
+
+
+// }
+
+
+?>
 <div class="container">
   <div class="row d-flex justify-content-center align-items-center h-100 mt-5 mt-5">
     <div class="col-12">
@@ -35,25 +53,9 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
                     </tr>
                   </thead>
                   <tbody>
-
-                    <?php foreach ($allproducts as $product): ?>
-                      <tr class="mb-4">
-                        <th scope="row"><?php echo $product->id; ?></th>
-                        <td><img width="100" height="100" src="../images/<?php echo $product->pro_image; ?>"
-                            class="img-fluid rounded-3" alt="Cotton T-shirt">
-                        </td>
-                        <td><?php echo $product->pro_name; ?></td>
-                        <td class="pro_price">$<?php echo $product->pro_price; ?></td>
-                        <td><input id="form1" min="1" name="quantity" value="<?php echo $product->pro_amount; ?>"
-                            type="number" class="form-control form-control-sm pro_amount" /></td>
-                        <td  class="total_price"><?php echo $product->pro_price; ?></td>
-                        <td><button value="<?php echo $product->id; ?>" class="btn-update btn btn-warning text-white"><i
-                              class="fas fa-pen"></i> </button></td>
-
-                        <td><button class="btn btn-danger text-white"><i class="fas fa-trash-alt"></i> </button></td>
-                      </tr>
-                      <tr>
-                      <?php endforeach; ?>
+                    <?php foreach($allproducts as $product): ?>
+                    <th class="mb-4">
+                      <th scope="row" ><?php echo $product->pro_name ?></th>
 
                   </tbody>
                 </table>
@@ -61,30 +63,35 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
               </div>
             </div>
             <div class="col-lg-4 bg-grey">
-              <di class="p-5">
+              <div class="p-5">
                 <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                 <hr class="my-4">
 
 
 
                 <div class="d-flex justify-content-between mb-5">
-                  <h5 class="text-uppercase">Full price</h5>
-                  <h5 type ="text" class="full_price"></h5>
+                  <h5 class="text-uppercase">Total price</h5>
+                  <h5 class="full_price"></h5>
                 </div>
-
                 <button type="button" class="btn btn-dark btn-block btn-lg"
                   data-mdb-ripple-color="dark">Checkout</button>
+                  <?php endforeach ?>
 
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+</div>
 
-</div>
-</div>
+
+
+
+
+
+
 
 
 
@@ -108,28 +115,28 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
       var total = pro_amount * pro_price;
       $el.find(".total_price").html("");
 
-      $el.find(".total_price").append( total);
+      $el.find(".total_price").append(total + '$');
 
-      $(".btn-update").on('click', function (e) {
+      //   $(".btn-update").on('click', function(e) {
 
-        var id = $(this).val();
+      //       var id = $(this).val();
 
 
-        $.ajax({
-          type: "POST",
-          url: "update-item.php",
-          data: {
-            update: "update",
-            id: id,
-            product_amount: pro_amount
-          },
+      //       $.ajax({
+      //         type: "POST",
+      //         url: "update-item.php",
+      //         data: {
+      //           update: "update",
+      //           id: id,
+      //           product_amount: pro_amount
+      //         },
 
-          success: function () {
-            // alert("done");
-            reload();
-          }
-        })
-      });
+      //         success: function() {
+      //          // alert("done");
+      //           reload();
+      //         }
+      //       })
+      //     });
 
 
       fetch();
@@ -144,12 +151,12 @@ $allproducts = $products->fetchALL(PDO::FETCH_OBJ);
         $('.total_price').each(function () {
           sum += parseFloat($(this).text());
         });
-        
+
+        full_price = Number(total.split('$').join('').trim());
 
 
-        $(".full_price").html("$" + sum );
-
-      }, 1000);
+        $(".full_price").html(sum + "$");
+      }, 4000);
     }
 
     // function reload() {

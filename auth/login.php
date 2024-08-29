@@ -1,44 +1,58 @@
-<?php require "../includes/header.php"; ?>
-<?php require "../config/config.php"; ?>
+<?php require "../includes/header.php"?>
+<?php require "../config/config.php"?>
 <?php
 
-     if(isset($_POST['submit'])) {
-        // echo "<script>success</script>";
-        if(empty($_POST['email']) OR empty($_POST['password'])) {
-            echo "<script>alert('one or more inputs are empty'); </script>";
-        } 
-        else {
+if(isset($_POST['submit'])){
+
+    if(isset($_SESSION['username'])){
+        header("location: ".APPURL."");
+
+    }
+
+    if(empty($_POST['email']) OR empty($_POST['password'])){
+        echo "<script>alert('one or more inputs are empty');</script>";
+    }
+    
+    else{
+      
+        $email      =      $_POST['email'];
+        $password   =      $_POST['password'];
+
+        $login = $conn->query("SELECT * FROM users WHERE email='$email'");
+        $login-> execute();
+
+        $fetch = $login->fetch(PDO::FETCH_ASSOC);
+
+        if($login->rowCount() > 0){
+
+            if(password_verify($password, $fetch['mypassword'] )){
             
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+                $_SESSION['username'] = $fetch['username'];
+                $_SESSION['user_id'] = $fetch['id'];
+                header("location:".APPURL."");
+                
 
-            $login = $conn->query("SELECT * FROM users WHERE email='$email'");
-            $login->execute();
 
-            $fetch = $login->fetch(PDO::FETCH_ASSOC);
-
-            if($login->rowcount() > 0) {
-
-                if(password_verify($password, $fetch['mypassword'])) {
-                    $_SESSION['username'] = $fetch['username'];
-                    $_SESSION['user_id'] = $fetch['id'];
-
-                    header("location: ".APPURL."");
-
-                } else {
-                    echo "<script>alert('password or email is wrong')</script>";
-                }
 
             } else {
-                echo "<script>alert('password or email is wrong')</script>";
+                echo "<script>alert('password of email are wrong');</script>";
             }
+        } else{
+            echo "<script>alert('password of email are wrong');</script>";
+
+        }
     }
+
+
 }
+
+
 ?>
+
 
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form class="form-control mt-5" method="POST" action="Login.php">
+                <form class="form-control mt-5" method="POST" action="login.php">
                     <h4 class="text-center mt-3"> Login </h4>
                    
                     <div class="">
@@ -53,10 +67,11 @@
                             <input type="password" name="password" class="form-control" id="inputPassword">
                         </div>
                     </div>
-                    <button class="w-100 btn btn-lg btn-primary mt-4 mb-4" name="submit" type="submit">login</button>
+                    <button class="w-100 btn btn-lg btn-primary mt-4 mb-4" type="submit" name="submit">Login</button>
 
                 </form>
             </div>
         </div>
-
-    <?php require "../includes/footer.php"; ?>
+ 
+   
+        <?php require "../includes/footer.php"?>
