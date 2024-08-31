@@ -127,8 +127,16 @@ if (isset($_GET['id'])) {
 <?php require "../includes/footer.php" ?>
 
 <script>
-    $(document).ready(function () {
-        $(button).on("click", function (e) {
+    // const register =document.getElementById("submit")
+    // register.addEventListener("click", function (e){
+    //     e.preventDefault()
+    //     console.log("welcome")
+
+    // })
+    
+        const register =document.getElementById("submit")
+    register.addEventListener("click", function (e){
+        
 
             e.preventDefault();
             var formdata = $("#form-data").serialize() + '&submit=submit';
@@ -145,5 +153,5 @@ if (isset($_GET['id'])) {
                 }
             })
         })
-    });
+  
 </script>
