@@ -127,7 +127,7 @@ $allProducts = $products->fetchALL(PDO::FETCH_OBJ);
       var total = pro_amount * pro_price;
       $el.find(".total_price").html("");
 
-      $el.find(".total_price").append('$' + total );
+      $el.find(".total_price").append( total );
 
         $(".btn-update").on('click', function(e) {
 
