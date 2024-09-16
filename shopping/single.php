@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
         $select = $conn->query("SELECT * FROM cart WHERE pro_id ='$id' AND user_id='$_SESSION[user_id]'");
         $select->execute();
     }
-    //getting data fo every product
+    //getting data for every product
     $row = $conn->query("SELECT * FROM products WHERE status=1 AND id='$id'");
     $row->execute();
 
@@ -149,9 +149,15 @@ if (isset($_GET['id'])) {
                 success: function () {
                     alert("add to cart Successful!");
                     $("#submit").html("<i class='fas fa-shopping-cart'></i> Add to cart").prop("disabled", true);
-
+                    ref()
                 }
-            })
-        })
-  
+            });
+
+            function ref() {
+
+                    $("body").load("single.php?id=<?php echo $id; ?>")
+
+            } 
+
+        });
 </script>
