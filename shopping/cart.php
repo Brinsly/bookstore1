@@ -12,7 +12,13 @@ $products->execute();
 $allProducts = $products->fetchALL(PDO::FETCH_OBJ);
 
 
+if (isset($_POST['submit'])){
+  $price = $_POST['price'];
 
+  $_SESSION['price'] = $price;
+
+  header("location: checkout.php");
+}
 
 
 ?>
@@ -85,16 +91,16 @@ $allProducts = $products->fetchALL(PDO::FETCH_OBJ);
                   <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                   <hr class="my-4">
 
-
+                  <form method="POST" action="cart.php">
                   <div class="d-flex justify-content-between mb-5">
-                    <h5 class="text-uppercase">Full price</h5>
+                    <h5 class="text-uppercase">Total price</h5>
                     <h5 class="full_price"></h5>
-                    
-
+                    <input class="inp_price" name="price" type="hidden">
                   </div>
 
-                  <button type="button" class="btn btn-dark btn-block btn-lg"
+                  <button type="submit" name="submit" class="checkout btn btn-dark btn-block btn-lg"
                     data-mdb-ripple-color="dark">Checkout</button>
+                </form>
 
                 </div>
               </div>
@@ -214,6 +220,9 @@ $.ajax({
 
 
         $(".full_price").html('$' + sum);
+        $(".inp_price").val(sum);
+
+        
       }, 400);
     }
 
