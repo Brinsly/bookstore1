@@ -145,7 +145,7 @@
                 </li>
 
                 <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                    <p>(+237)678748532cxxsxs</p>
+                    <p>(+237)678748532</p>
                 </li>
 
                 <li><i class="fas fa-envelope mt-4 fa-2x"></i>
