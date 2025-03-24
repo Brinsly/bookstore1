@@ -8,13 +8,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5c5946fe44.js" crossorigin="anonymous"></script>
-    <title>Bookstore</title>
+    <title>Bookstore1</title>
   </head>
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark" >
     <div class="container" style="margin-top: none">
-        <a class="navbar-brand  text-white" href="#">Bookstore</a>
+        <a class="navbar-brand  text-white" href="#">Bookstore1</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,13 +28,13 @@
             <a class="nav-link active  text-white" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item ">
-            <a class="nav-link  text-white" href="http://localhost/bookstore/contact.php">Contact</a>
+            <a class="nav-link  text-white" href="http://localhost/bookstore1/contact.php">Contact</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active  text-white" aria-current="page" href="http://localhost/bookstore/shopping/cart.php"><i class="fas fa-shopping-cart"></i>(2)</a>
+            <a class="nav-link active  text-white" aria-current="page" href="http://localhost/bookstore1/shopping/cart.php"><i class="fas fa-shopping-cart"></i></a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active  text-white" aria-current="page" href="http://localhost/bookstore/categories/index.php">Categories</a>
+            <a class="nav-link active  text-white" aria-current="page" href="http://localhost/bookstore1/categories/index.php"></a>
             </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle  text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -141,15 +141,15 @@
         <div class="col-md-3 text-center">
             <ul class="list-unstyled mb-0">
                 <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                    <p>San Francisco, CA 94126, USA</p>
+                    <p>North West Bamenda, Cameroon</p>
                 </li>
 
                 <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                    <p>+ 01 234 567 89</p>
+                    <p>(+237)678748532cxxsxs</p>
                 </li>
 
                 <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                    <p>contact@mdbootstrap.com</p>
+                    <p>adhddredd10@gmail.com</p>
                 </li>
             </ul>
         </div>

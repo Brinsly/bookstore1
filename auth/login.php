@@ -25,20 +25,18 @@ if(isset($_POST['submit'])){
 
         if($login->rowCount() > 0){
 
-            if(password_verify($password, $fetch['mypassword'] )){
+            if(password_verify($password, $fetch['mypassword'] ))
+            {
             
                 $_SESSION['username'] = $fetch['username'];
                 $_SESSION['user_id'] = $fetch['id'];
                 header("location:".APPURL."");
-                
-
-
 
             } else {
-                echo "<script>alert('password of email are wrong');</script>";
+                echo "<script>alert('Password or email is wrong');</script>";
             }
         } else{
-            echo "<script>alert('password of email are wrong');</script>";
+            echo "<script>alert('Password or email is wrong');</script>";
 
         }
     }

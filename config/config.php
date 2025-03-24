@@ -6,7 +6,7 @@
 
   //dbname
 
-  $dbname ="bookstore";
+  $dbname ="bookstore1";
 
 
   //username
